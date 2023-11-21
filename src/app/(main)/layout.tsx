@@ -7,10 +7,13 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header className="relative bg-gradient-to-b from-black/[0.8] to-black/[0.02] text-accent-contrast" />
+    <div className="relative flex min-h-screen flex-col">
+      <Header />
       {children}
       <Footer />
+      <div className="absolute left-0 right-0 -z-10 h-32">
+        <div className="absolute inset-0 bg-accent-3"></div>
+      </div>
     </div>
   );
 }

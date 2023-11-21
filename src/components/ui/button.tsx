@@ -18,12 +18,12 @@ const buttonVariants = cva(
         danger:
           "bg-danger-9 text-danger-1 hover:bg-danger-10 disabled:bg-gray-a3",
         ghost: "hover:bg-gray-a3",
-        link: "cursor-pointer font-normal text-accent-a11 hover:underline hover:decoration-accent-a6 hover:underline-offset-2",
+        link: "cursor-pointer font-normal text-accent-a11 decoration-accent-a6 hover:underline hover:underline-offset-2",
       },
       size: {
         default: "h-8 px-3 py-1.5",
         sm: "h-7 px-2 py-1",
-        lg: "h-10 rounded-md px-4",
+        lg: "h-10 rounded-md px-4 py-2",
         text: null,
       },
     },

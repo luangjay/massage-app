@@ -10,9 +10,6 @@ export const authOptions: AuthOptions = {
   session: {
     strategy: "jwt",
   },
-  jwt: {
-    maxAge: 60 * 60, // 1 hour
-  },
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
