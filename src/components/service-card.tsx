@@ -17,7 +17,7 @@ export function ServiceCard({ Icon, title, description }: ServiceCardProps) {
       </div>
       <div className="flex flex-col items-center gap-3">
         <h3 className="text-xl font-medium leading-none">{title}</h3>
-        <p className="text-center text-gray-11">{description}</p>
+        <p className="text-center text-gray-a11">{description}</p>
       </div>
     </Card>
   );

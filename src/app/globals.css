@@ -181,10 +181,6 @@
 }
 
 @layer base {
-  * {
-    @apply border-gray-a5;
-  }
-
   body {
     font-feature-settings:
       "rlig" 1,

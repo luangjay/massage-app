@@ -25,6 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { toast } from "./ui/toaster";
 
 const formDataSchema = z.object({
   email: z
@@ -45,7 +46,6 @@ export function LoginDialog({ children }: LoginDialogProps) {
   const [open, setOpen] = useState(false);
 
   const form = useForm<FormData>({
-    mode: "onChange",
     resolver: zodResolver(formDataSchema),
     defaultValues: {
       email: "",
@@ -64,8 +64,16 @@ export function LoginDialog({ children }: LoginDialogProps) {
     });
 
     if (signInResult?.error) {
-      // TODO: toast
+      toast({
+        title: "Error",
+        description: "Login failed.",
+        variant: "danger",
+      });
     } else {
+      toast({
+        title: "Success",
+        description: "You are now logged in.",
+      });
       router.refresh();
       setOpen(false);
     }
@@ -93,11 +101,7 @@ export function LoginDialog({ children }: LoginDialogProps) {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Enter your email address"
-                      value={field.value}
-                      onChange={field.onChange}
-                    />
+                    <Input placeholder="Enter your email address" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -113,8 +117,7 @@ export function LoginDialog({ children }: LoginDialogProps) {
                     <Input
                       type="password"
                       placeholder="Enter your password"
-                      value={field.value}
-                      onChange={field.onChange}
+                      {...field}
                     />
                   </FormControl>
                   <FormMessage />

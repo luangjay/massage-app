@@ -32,7 +32,7 @@ const UserAccountNav = ({ user, children }: UserNavMenuProps) => {
         <div className="flex items-center justify-start gap-2 p-3">
           <div className="flex w-[12rem] flex-col space-y-1 leading-none">
             <p className="font-medium">{user.name}</p>
-            <p className="text-muted-foreground w-full truncate text-sm">
+            <p className="w-full truncate text-sm text-gray-a11">
               {user.email}
             </p>
           </div>
