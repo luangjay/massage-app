@@ -5,25 +5,25 @@ import { type z } from "zod";
 import { getServerSession } from "@/lib/auth";
 import { parseType } from "@/lib/utils";
 import {
-  createBookingResponseSchema,
-  type createBookingSchema,
-} from "@/types/booking-api";
+  updateShopResponseSchema,
+  type updateShopSchema,
+} from "@/types/shop-api";
 
-export async function createBooking(
-  shopId: string,
-  body: z.infer<typeof createBookingSchema>
-): Promise<z.infer<typeof createBookingResponseSchema>> {
+export async function updateShop(
+  id: string,
+  body: z.infer<typeof updateShopSchema>
+): Promise<z.infer<typeof updateShopResponseSchema>> {
   const session = await getServerSession();
   if (!session) throw new Error("No Session");
-  const response = await fetch(`${env.API_URL}/shops/${shopId}/bookings`, {
+  const response = await fetch(`${env.API_URL}/shops/${id}`, {
     headers: {
       "Content-Type": "application/json", // for post, put, patch
       Authorization: `Bearer ${session.token}`, // for those which require auth
     },
-    method: "POST",
+    method: "PUT",
     body: JSON.stringify({
       ...body,
     }),
   });
-  return parseType(createBookingResponseSchema, await response.json());
+  return parseType(updateShopResponseSchema, await response.json());
 }

@@ -20,7 +20,15 @@ export const createBookingSchema = z.object({
 
 export const createBookingResponseSchema = z.object({
   success: z.boolean(),
-  data: bookingSchema,
+  data: z
+    .object({
+      bookingDate: z.string(),
+      serviceMinute: z.number(),
+      user: z.string(),
+      shop: z.string(),
+      _id: z.string(),
+    })
+    .optional(),
 });
 
 /**

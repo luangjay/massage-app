@@ -9,19 +9,25 @@ export const createShopSchema = z.object({
   address: z.string(),
   priceLevel: z.number(),
   province: z.string(),
-  postalCode: z.string(),
+  postalcode: z.string(),
   tel: z.string(),
   picture: z.string(),
 });
 
 export const createShopResponseSchema = z.object({
-  name: z.string(),
-  address: z.string(),
-  priceLevel: z.number(),
-  province: z.string(),
-  postalCode: z.string(),
-  tel: z.string(),
-  picture: z.string(),
+  success: z.boolean(),
+  data: z
+    .object({
+      _id: z.string(),
+      name: z.string(),
+      address: z.string(),
+      priceLevel: z.number(),
+      province: z.string(),
+      postalcode: z.string(),
+      tel: z.string(),
+      picture: z.string(),
+    })
+    .optional(),
 });
 
 /**
@@ -49,7 +55,7 @@ export const updateShopSchema = z.object({
   address: z.string(),
   priceLevel: z.number(),
   province: z.string(),
-  postalCode: z.string(),
+  postalcode: z.string(),
   tel: z.string(),
   picture: z.string(),
 });
@@ -62,7 +68,7 @@ export const updateShopResponseSchema = z.object({
 /**
  * DELETE /shops/{id}
  */
-export const deleteShopByIdResponseSchema = z.object({
+export const deleteShopResponseSchema = z.object({
   success: z.boolean(),
   data: z.object({}),
 });
