@@ -16,7 +16,7 @@ const buttonVariants = cva(
         outline:
           "text-gray-12 ring-1 ring-gray-a11 hover:bg-gray-a3 disabled:ring-gray-a7",
         danger:
-          "bg-danger-9 text-danger-1 hover:bg-danger-10 disabled:bg-gray-a3",
+          "bg-danger-9 text-accent-contrast hover:bg-danger-10 disabled:bg-gray-a3",
         ghost: "hover:bg-gray-a3",
         link: "cursor-pointer font-normal text-accent-a11 decoration-accent-a6 hover:underline hover:underline-offset-2",
       },

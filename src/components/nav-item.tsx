@@ -2,17 +2,13 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 
-type HeaderLinkProps = {
+type NavItemProps = {
   variant?: "default" | "home";
   href: string;
   title: string;
 };
 
-export function HeaderLink({
-  variant = "default",
-  href,
-  title,
-}: HeaderLinkProps) {
+export function NavItem({ variant = "default", href, title }: NavItemProps) {
   return (
     <Button
       className={cn(

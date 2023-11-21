@@ -30,6 +30,7 @@ import { toast } from "./ui/toaster";
 const formDataSchema = z.object({
   email: z
     .string()
+    .trim()
     .min(1, { message: "Email is required" })
     .email({ message: "Invalid email" }),
   password: z.string().min(1, { message: "Password is required" }),
@@ -38,7 +39,7 @@ const formDataSchema = z.object({
 type FormData = z.infer<typeof formDataSchema>;
 
 type LoginDialogProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 
 export function LoginDialog({ children }: LoginDialogProps) {
@@ -53,7 +54,11 @@ export function LoginDialog({ children }: LoginDialogProps) {
     },
   });
 
-  const { handleSubmit, control } = form;
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+    control,
+  } = form;
 
   const onSubmit = async (data: FormData) => {
     const { email, password } = data;
@@ -66,7 +71,7 @@ export function LoginDialog({ children }: LoginDialogProps) {
     if (signInResult?.error) {
       toast({
         title: "Error",
-        description: "Login failed.",
+        description: "Failed to login.",
         variant: "danger",
       });
     } else {
@@ -95,8 +100,8 @@ export function LoginDialog({ children }: LoginDialogProps) {
               </DialogDescription>
             </DialogHeader>
             <FormField
-              control={control}
               name="email"
+              control={control}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
@@ -108,8 +113,8 @@ export function LoginDialog({ children }: LoginDialogProps) {
               )}
             />
             <FormField
-              control={control}
               name="password"
+              control={control}
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
@@ -128,7 +133,9 @@ export function LoginDialog({ children }: LoginDialogProps) {
               <Button variant="soft" type="button">
                 Sign up
               </Button>
-              <Button type="submit">Login</Button>
+              <Button type="submit" disabled={isSubmitting}>
+                Login
+              </Button>
             </DialogFooter>
           </form>
         </Form>

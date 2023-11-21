@@ -12,6 +12,7 @@ export async function getMe(
     headers: {
       Authorization: `Bearer ${token}`,
     },
+    cache: "no-cache",
   });
 
   return parseType(getMeResponseSchema, await response.json());

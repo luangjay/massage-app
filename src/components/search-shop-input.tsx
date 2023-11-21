@@ -22,13 +22,13 @@ export function SearchShopInput() {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [search, setSearch] = useState("");
-  const tags = searchParams.getAll("search");
+  const tags = searchParams.getAll("tag");
 
   const addTag = useCallback(
     (tag: string) => {
       const updatedSearchParams = new URLSearchParams(searchParams);
-      if (!updatedSearchParams.has("search", tag)) {
-        updatedSearchParams.append("search", tag);
+      if (!updatedSearchParams.has("tag", tag)) {
+        updatedSearchParams.append("tag", tag);
         router.replace(`?${updatedSearchParams.toString()}`);
       }
     },
@@ -38,7 +38,7 @@ export function SearchShopInput() {
   const removeTag = useCallback(
     (tag: string) => {
       const newSearchParams = new URLSearchParams(searchParams);
-      newSearchParams.delete("search", tag);
+      newSearchParams.delete("tag", tag);
       router.replace(`?${newSearchParams.toString()}`);
     },
     [router, searchParams]
@@ -107,7 +107,7 @@ export function SearchShopInput() {
                         inputRef.current?.focus();
                       }}
                     >
-                      <Checkbox checked={searchParams.has("search", tag)} />
+                      <Checkbox checked={searchParams.has("tag", tag)} />
                       {tag}
                     </Command.Item>
                   ))}

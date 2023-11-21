@@ -29,7 +29,7 @@ const Calendar = ({
         nav_button_next: "absolute right-1",
         table: "w-full",
         head_row: "flex",
-        head_cell: "text-gray-a10 rounded w-8 font-normal text-[0.8rem]",
+        head_cell: "text-gray-a11 rounded w-8 font-normal text-[0.8rem]",
         row: "flex w-full mt-2",
         cell: cn(
           "relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-accent-9 first:[&:has([aria-selected])]:rounded-l last:[&:has([aria-selected])]:rounded-r",
@@ -45,7 +45,7 @@ const Calendar = ({
           "bg-accent-9 text-accent-contrast hover:bg-accent-9 hover:text-accent-contrast focus:bg-accent-9 focus:text-accent-contrast",
         day_today: "bg-gray-a3",
         day_outside: "text-gray-a8",
-        day_disabled: "text-gray-a8",
+        day_disabled: "text-gray-a8 hover:bg-transparent",
         day_range_middle:
           "aria-selected:bg-gray-a2 aria-selected:text-accent-a11",
         day_hidden: "invisible",

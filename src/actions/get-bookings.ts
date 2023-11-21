@@ -16,6 +16,7 @@ export async function getBookings(): Promise<
       "Content-Type": "application/json", // for post, put, patch
       Authorization: `Bearer ${session.token}`, // for those which require auth
     },
+    cache: "no-cache",
   });
   return parseType(getBookingsResponseSchema, await response.json());
 }
