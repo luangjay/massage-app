@@ -3,8 +3,8 @@ import { z } from "zod";
 export const shopSchema = z.object({
   _id: z.string(),
   name: z.string(),
+  priceLevel: z.number(),
   address: z.string(),
-  pricelevel: z.number(),
   province: z.string(),
   postalcode: z.string(),
   tel: z.string(),
