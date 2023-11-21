@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const shopSchema = z.object({
+  _id: z.string(),
   name: z.string(),
   address: z.string(),
   pricelevel: z.number(),
