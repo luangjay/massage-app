@@ -16,8 +16,5 @@ export async function login(
     body: JSON.stringify(body),
   });
 
-  console.log("login calledddd");
-
-  const data = (await response.json()) as Record<string, unknown>;
-  return parseType(loginResponseSchema, { ...data });
+  return parseType(loginResponseSchema, await response.json());
 }

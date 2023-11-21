@@ -3,7 +3,7 @@ import {
   type AuthOptions,
 } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { getMe } from "@/actions/getMe";
+import { getMe } from "@/actions/get-me";
 import { login } from "@/actions/login";
 
 export const authOptions: AuthOptions = {

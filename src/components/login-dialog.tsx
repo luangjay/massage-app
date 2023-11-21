@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { PersonIcon } from "@radix-ui/react-icons";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -37,7 +36,11 @@ const formDataSchema = z.object({
 
 type FormData = z.infer<typeof formDataSchema>;
 
-export function LoginDialog() {
+type LoginDialogProps = {
+  children: React.ReactNode;
+};
+
+export function LoginDialog({ children }: LoginDialogProps) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
@@ -70,11 +73,7 @@ export function LoginDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button className="h-6 w-6 p-0" variant="ghost" size="text">
-          <PersonIcon className="h-4 w-4 shrink-0" />
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="w-full max-w-sm">
         <Form {...form}>
           <form
