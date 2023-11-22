@@ -76,13 +76,13 @@ export function UpdateReservationDialog({
     if (!response.success) {
       toast({
         title: "Error",
-        description: "Failed to create the reservation.",
+        description: "Failed to update the reservation.",
         variant: "danger",
       });
     } else {
       toast({
         title: "Success",
-        description: "The reservation has been created.",
+        description: "The reservation has been update.",
       });
       router.refresh();
       setOpen(false);
@@ -96,13 +96,13 @@ export function UpdateReservationDialog({
     if (!response.success) {
       toast({
         title: "Error",
-        description: "Failed to delete shop.",
+        description: "Failed to delete reservation.",
         variant: "danger",
       });
     } else {
       toast({
         title: "Success",
-        description: "The shop has been deleted.",
+        description: "The reservation has been deleted.",
       });
       router.refresh();
       setOpen(false);
@@ -162,7 +162,9 @@ export function UpdateReservationDialog({
               control={form.control}
               render={({ field }) => (
                 <FormItem className="flex-1 flex-col">
-                  <FormLabel htmlFor={`service-${shop._id}`}>Service minutes</FormLabel>
+                  <FormLabel htmlFor={`service-${shop._id}`}>
+                    Service minutes
+                  </FormLabel>
                   <FormControl>
                     <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger
