@@ -35,7 +35,7 @@ type FormData = z.infer<typeof formDataSchema>;
 
 type UpdateReservationDialogProps = {
   reservation: Booking;
-  role: "admin" | "user";
+  role?: "admin" | "user";
   children?: React.ReactNode;
 };
 
