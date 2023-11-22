@@ -151,6 +151,7 @@ export function ShopCard({ shop, role }: ShopCardProps) {
                 <DropdownMenuContent align="end">
                   <DropdownMenuItem
                     onSelect={() => void setShopDialogOpen(true)}
+                    disabled={deleting}
                   >
                     Edit
                   </DropdownMenuItem>

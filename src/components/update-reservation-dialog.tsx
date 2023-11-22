@@ -182,7 +182,7 @@ export function UpdateReservationDialog({
               )}
             />
             <DialogFooter className="sm:flex-row-reverse sm:justify-between">
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting || deleting}>
                 Update
               </Button>
               <Button
