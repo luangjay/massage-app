@@ -10,9 +10,11 @@ export async function register(
 ): Promise<z.infer<typeof registerResponseSchema>> {
   const response = await fetch(`${env.API_URL}/auth/register`, {
     method: "POST",
-    body: JSON.stringify({
-      ...body,
-    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
   });
+
   return parseType(registerResponseSchema, await response.json());
 }

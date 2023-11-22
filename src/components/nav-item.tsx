@@ -14,7 +14,7 @@ export function NavItem({ variant = "default", href, title }: NavItemProps) {
       className={cn(
         variant === "home"
           ? "text-accent-contrast hover:decoration-accent-contrast focus-visible:ring-accent-8"
-          : "text-gray-12"
+          : "text-gray-12 hover:decoration-accent-6"
       )}
       variant="link"
       size="text"

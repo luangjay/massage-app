@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { getServerSession } from "@/lib/auth";
 import { cn } from "@/lib/utils";
-import { LoginDialog } from "./login-dialog";
+import { AuthDialog } from "./auth-dialog";
 import { Logo } from "./logo";
 import { NavItem } from "./nav-item";
 import { Button } from "./ui/button";
@@ -61,7 +61,7 @@ export async function Header({ variant = "default", ...props }: HeaderProps) {
               </Button>
             </UserAccountNav>
           ) : (
-            <LoginDialog>
+            <AuthDialog>
               <Button
                 className={cn(
                   "p-1",
@@ -74,7 +74,7 @@ export async function Header({ variant = "default", ...props }: HeaderProps) {
               >
                 <PersonIcon className="h-4 w-4 shrink-0" />
               </Button>
-            </LoginDialog>
+            </AuthDialog>
           )}
         </div>
       </div>

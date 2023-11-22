@@ -48,20 +48,20 @@ export function SearchShopInput() {
     <Popover>
       <PopoverTrigger asChild>
         <Button
-          className="text-muted-foreground w-full justify-start gap-2 overflow-auto whitespace-nowrap px-2 font-normal ring-gray-a7 scrollbar-hide"
+          className="w-full justify-start gap-2 overflow-auto whitespace-nowrap px-2 font-normal ring-gray-a7 scrollbar-hide"
           variant="outline"
           size="lg"
         >
           <MagnifyingGlassIcon className="h-5 w-5 shrink-0 text-gray-a8" />
-          {searchParams.size === 0 ? (
+          {tags.length === 0 ? (
             "Search by tags"
           ) : (
             <>
-              {searchParams.size} tags
+              {tags.length} tags
               <Separator orientation="vertical" />
               <div className="flex gap-1.5">
-                {[...searchParams].map(([, tag]) => (
-                  <Badge key={tag} variant="soft">
+                {tags.map((tag) => (
+                  <Badge key={tag} className="font-semibold" variant="default">
                     {tag}
                   </Badge>
                 ))}

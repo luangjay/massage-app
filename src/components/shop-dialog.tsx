@@ -47,7 +47,7 @@ const formDataSchema = z.object({
     .trim()
     .min(1, { message: "Required" })
     .regex(/\b\d{10}\b/g, {
-      message: "Must be 10-digit numbers",
+      message: "Must be 10-digit number",
     }),
   picture: z.string().trim().min(1, { message: "Required" }),
 });
@@ -158,11 +158,11 @@ export function ShopDialog({
             onSubmit={(...a) => void handleSubmit(onSubmit)(...a)}
           >
             <DialogHeader>
-              <DialogTitle>{shop ? "Update shop" : "Create shop"}</DialogTitle>
+              <DialogTitle>{shop ? "Edit shop" : "Create shop"}</DialogTitle>
               <DialogDescription>
                 {shop
-                  ? "Create a new massage shop."
-                  : "Edit massage shop information."}
+                  ? "Update the massage shop information."
+                  : "Create a new massage shop."}
               </DialogDescription>
             </DialogHeader>
             <div className="flex gap-4">
@@ -170,7 +170,7 @@ export function ShopDialog({
                 name="name"
                 control={control}
                 render={({ field }) => (
-                  <FormItem className="flex-1">
+                  <FormItem className="flex-[1.25]">
                     <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input placeholder="Chula Massage" {...field} />
@@ -213,7 +213,7 @@ export function ShopDialog({
                 name="province"
                 control={control}
                 render={({ field }) => (
-                  <FormItem className="flex-1">
+                  <FormItem className="flex-[1.25]">
                     <FormLabel>Province</FormLabel>
                     <FormControl>
                       <Input placeholder="Huai Khwang" {...field} />
@@ -226,9 +226,9 @@ export function ShopDialog({
                 name="postalcode"
                 control={control}
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="flex-1">
                     <FormLabel>Postal code</FormLabel>
-                    <FormControl className="flex-1">
+                    <FormControl>
                       <Input placeholder="90110" {...field} />
                     </FormControl>
                     <FormMessage />

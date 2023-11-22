@@ -1,21 +1,13 @@
 import { z } from "zod";
+import { shopSchema } from "./shop";
+import { userSchema } from "./user";
 
 export const bookingSchema = z.object({
   _id: z.string(),
   bookingDate: z.string(),
   serviceMinute: z.number(),
-  user: z.object({
-    _id: z.string(),
-    name: z.string(),
-    email: z.string(),
-    tel: z.string(),
-  }),
-  shop: z.object({
-    _id: z.string(),
-    name: z.string(),
-    address: z.string(),
-    tel: z.string(),
-  }),
+  user: userSchema,
+  shop: shopSchema,
 });
 
 export type Booking = z.infer<typeof bookingSchema>;

@@ -8,9 +8,10 @@ import { CalendarIcon, DotsVerticalIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { cn } from "@/lib/utils";
 import { type Shop } from "@/types/base/shop";
 import { createBooking } from "@/actions/create-booking";
-import { DeleteShopDialog } from "./delete-shop-dialog";
+import { deleteShop } from "@/actions/delete-shop";
 import { ShopDialog } from "./shop-dialog";
 import { Button } from "./ui/button";
 import { Calendar } from "./ui/calendar";
@@ -19,6 +20,7 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuPortal,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "./ui/form";
@@ -50,8 +52,9 @@ export function ShopCard({ shop, role }: ShopCardProps) {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
 
+  const [deleting, setDeleting] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [shopDialogOpen, setShopDialogOpen] = useState(false);
-  const [deleteShopDialogOpen, setDeleteShopDialogOpen] = useState(false);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formDataSchema),
@@ -88,6 +91,27 @@ export function ShopCard({ shop, role }: ShopCardProps) {
     }
   };
 
+  const handleDelete = async (e: Event) => {
+    e.preventDefault();
+    setDeleting(true);
+    const response = await deleteShop(shop._id);
+    if (!response.success) {
+      toast({
+        title: "Error",
+        description: "Failed to delete shop.",
+        variant: "danger",
+      });
+    } else {
+      toast({
+        title: "Success",
+        description: "The shop has been deleted.",
+      });
+      router.refresh();
+      setMenuOpen(false);
+    }
+    setDeleting(false);
+  };
+
   return (
     <Card className="flex flex-col gap-3 p-4">
       <div className="relative aspect-[4/3] w-full">
@@ -101,30 +125,44 @@ export function ShopCard({ shop, role }: ShopCardProps) {
       </div>
       <div className="flex flex-col items-start gap-2">
         <div className="flex w-full items-center justify-between gap-2">
-          <div className="flex max-w-[18rem] items-center gap-2">
+          <div
+            className={cn(
+              "flex w-full items-center gap-2",
+              role === "admin" && "max-w-[18rem]"
+            )}
+          >
             <h3 className="truncate text-lg font-bold">{shop.name}</h3>
-            <span className="shrink-0 text-xl font-medium text-accent-a11">
+            <span className="shrink-0 text-xl font-medium tracking-tighter text-accent-a11">
               {Array.from({ length: shop.priceLevel }, () => "$")}
             </span>
           </div>
           {role === "admin" && (
-            <DropdownMenu modal={false}>
+            <DropdownMenu
+              modal={false}
+              open={menuOpen}
+              onOpenChange={setMenuOpen}
+            >
               <DropdownMenuTrigger asChild>
                 <Button className="h-6 w-6 p-0" variant="ghost">
                   <DotsVerticalIcon className="h-4 w-4 shrink-0" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onSelect={() => void setShopDialogOpen(true)}>
-                  Edit
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="focus:bg-danger-9"
-                  onSelect={() => void setDeleteShopDialogOpen(true)}
-                >
-                  Delete
-                </DropdownMenuItem>
-              </DropdownMenuContent>
+              <DropdownMenuPortal>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    onSelect={() => void setShopDialogOpen(true)}
+                  >
+                    Edit
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="focus:bg-danger-9"
+                    onSelect={(...a) => void handleDelete(...a)}
+                    disabled={deleting}
+                  >
+                    Delete
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenuPortal>
             </DropdownMenu>
           )}
         </div>
@@ -208,13 +246,6 @@ export function ShopCard({ shop, role }: ShopCardProps) {
         <ShopDialog
           open={shopDialogOpen}
           onOpenChange={setShopDialogOpen}
-          shop={shop}
-        />
-      )}
-      {role === "admin" && (
-        <DeleteShopDialog
-          open={deleteShopDialogOpen}
-          onOpenChange={setDeleteShopDialogOpen}
           shop={shop}
         />
       )}

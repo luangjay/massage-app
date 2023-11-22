@@ -11,10 +11,10 @@ export const loginSchema = z.object({
 
 export const loginResponseSchema = z.object({
   success: z.boolean(),
-  _id: z.string(),
-  name: z.string(),
-  email: z.string(),
-  token: z.string(),
+  _id: z.string().optional(),
+  name: z.string().optional(),
+  email: z.string().optional(),
+  token: z.string().optional(),
 });
 
 /**
@@ -38,8 +38,8 @@ export const registerSchema = z.object({
 
 export const registerResponseSchema = z.object({
   success: z.boolean(),
-  _id: z.string(),
-  name: z.string(),
-  email: z.string(),
-  token: z.string(),
+  _id: z.string().optional(),
+  name: z.string().optional(),
+  email: z.string().optional(),
+  token: z.string().optional(),
 });

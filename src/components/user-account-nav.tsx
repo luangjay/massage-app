@@ -17,11 +17,11 @@ type UserNavMenuProps = {
   children: React.ReactNode;
 };
 
-const UserAccountNav = ({ user, children }: UserNavMenuProps) => {
+export function UserAccountNav({ user, children }: UserNavMenuProps) {
   const router = useRouter();
 
   const logout = async () => {
-    await signOut();
+    await signOut({});
     router.refresh();
   };
 
@@ -57,6 +57,4 @@ const UserAccountNav = ({ user, children }: UserNavMenuProps) => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
-
-export { UserAccountNav as UserAccountNav };
+}

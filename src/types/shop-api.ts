@@ -42,7 +42,7 @@ export const getShopsResponseSchema = z.object({
 /**
  * GET /shops/{id}
  */
-export const getShopByIdResponseSchema = z.object({
+export const getShopResponseSchema = z.object({
   success: z.boolean(),
   data: shopSchema,
 });

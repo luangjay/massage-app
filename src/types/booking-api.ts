@@ -34,9 +34,9 @@ export const createBookingResponseSchema = z.object({
 /**
  * GET /bookings/{id}
  */
-export const getBookingByIdResponseSchema = z.object({
+export const getBookingResponseSchema = z.object({
   success: z.boolean(),
-  data: bookingSchema,
+  data: bookingSchema.optional(),
 });
 
 /**
@@ -49,13 +49,15 @@ export const updateBookingSchema = z.object({
 
 export const updateBookingResponseSchema = z.object({
   success: z.boolean(),
-  data: z.object({
-    _id: z.string(),
-    bookingDate: z.string(),
-    serviceMinute: z.number(),
-    user: z.string(),
-    shop: z.string(),
-  }),
+  data: z
+    .object({
+      _id: z.string(),
+      bookingDate: z.string(),
+      serviceMinute: z.number(),
+      user: z.string(),
+      shop: z.string(),
+    })
+    .optional(),
 });
 
 /**

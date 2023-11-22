@@ -6,7 +6,6 @@ export const userSchema = z.object({
   email: z.string(),
   tel: z.string(),
   role: z.union([z.literal("admin"), z.literal("user")]),
-  createdAt: z.string(),
 });
 
 export type User = z.infer<typeof userSchema>;

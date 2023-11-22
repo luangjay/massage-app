@@ -8,7 +8,7 @@ import {
 } from "@radix-ui/react-icons";
 import { getServerSession } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
-import { LoginDialog } from "@/components/login-dialog";
+import { AuthDialog } from "@/components/auth-dialog";
 import { ServiceCard } from "@/components/service-card";
 
 export default async function Page() {
@@ -35,12 +35,12 @@ export default async function Page() {
             </Link>
           </Button>
         ) : (
-          <LoginDialog>
+          <AuthDialog>
             <Button className="mt-8 focus-visible:ring-accent-8" size="lg">
               Get started
               <ArrowRightIcon className="shrink-0" />
             </Button>
-          </LoginDialog>
+          </AuthDialog>
         )}
       </section>
       <section

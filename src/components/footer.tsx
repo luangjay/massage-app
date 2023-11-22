@@ -1,11 +1,9 @@
 import { ModeToggle } from "./mode-toggle";
 
-const Footer = () => {
+export function Footer() {
   return (
-    <section className="container flex items-center justify-end px-8 py-16">
+    <section className="container flex items-center justify-end p-16">
       <ModeToggle />
     </section>
   );
-};
-
-export { Footer };
+}

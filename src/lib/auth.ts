@@ -30,9 +30,9 @@ export const authOptions: AuthOptions = {
         // You can also use the `req` object to obtain additional parameters
         // (i.e., the request IP address)
         if (!credentials) return null;
-        const { success, token } = await login(credentials);
+        const { token } = await login(credentials);
 
-        if (!success) return null;
+        if (!token) return null;
         return { token };
       },
     }),
